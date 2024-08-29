@@ -1,0 +1,13 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    gap: 20px; /* Adds space between the cards */
+    justify-items: center; /* Centers the cards horizontally */
+    padding: 20px; /* Optional: adds padding around the container */
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 40px); /* Makes the card responsive */
+    max-width: calc(33.333% - 40px);
+    box-sizing: border-box;
+}
