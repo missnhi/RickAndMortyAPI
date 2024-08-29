@@ -4,13 +4,16 @@ import "bootstrap/dist/js/bootstrap";
 import React, { useState, useEffect } from "react";
 import { ChakraProvider } from '@chakra-ui/react'
 
-// import Searchbar from "./components/Searchbar/Searchbar";
+import SearchBar from "./components/Searchbar/searchbar.components";
 import Card from './components/Card/card.components';
 function App() {
     let [fetchedData, updateFetchedData] = useState([]);
     let { info, results } = fetchedData;
 
-    let api = `https://rickandmortyapi.com/api/character/?page=1`
+    let [pageNumber, updatePageNumber] = useState(1);
+    let [search, setSearch] = useState("");
+
+    let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
     //when api change, reload the new data
     useEffect(() => {
         (async function () {
@@ -23,9 +26,10 @@ function App() {
         <ChakraProvider>
             <div className="App">
                 <h1 className="text-center mb-3">Characters</h1>
+                <SearchBar setSearch={setSearch} updatePageNumber={updatePageNumber} />
                 <div className="container">
                     <div className="row">
-                        Filter component will be placed here
+                        Filter component will be placed heree
                         <div className="col-lg-8 col-12">
                             <div className="row">
                                 <Card results={results}/>

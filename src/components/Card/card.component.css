@@ -1,8 +1,8 @@
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px; /* Adds space between the cards */
-    justify-items: center; /* Centers the cards horizontally */
+    justify-content: center; /* Centers the cards */
     padding: 20px; /* Optional: adds padding around the container */
 }
 
