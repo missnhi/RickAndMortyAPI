@@ -56,7 +56,7 @@ const Home = () => {
 
     return (
             <div className="App">
-                <h1 className="text-center mb-3">Characters</h1>
+                <h1 className="text-center mb-3">Members of the Rick&Morty Multiverse</h1>
                 <SearchBar setSearch={setSearch} updatePageNumber={updatePageNumber} />
                 <div className="container">
                     <div className="row">
