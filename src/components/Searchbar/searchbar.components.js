@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./searchbar.components.css";
+import styles from "./searchbar.components.scss";
 
 const SearchBar = ({ setSearch, updatePageNumber }) => {
     let searchBtn = (e) => {

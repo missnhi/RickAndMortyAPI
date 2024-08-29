@@ -1,21 +1,9 @@
 import React from "react";
-import styles from "./card.component.css";
+import { Link } from "react-router-dom";
+import styles from "./card.component.scss";
+// import CardDetails from "./CardDetails";
 
-import {
-    Card,
-    CardBody,
-    Image,
-    Stack,
-    Heading,
-    Text,
-    Divider,
-    CardFooter,
-    ButtonGroup,
-    Button,
-    Badge,
-} from "@chakra-ui/react";
-
-const CharacterCard = ({ results }) => {
+const Card = ({ page, results }) => {
     let display;
 
     if (results) {
@@ -23,45 +11,61 @@ const CharacterCard = ({ results }) => {
             let { id, image, name, status, location } = x;
 
             return (
-                <Card key={id} maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" shadow="md" mb={4}>
-                    <CardBody>
-                        <Image
-                            src={image}
-                            alt={name}
-                            borderRadius="lg"
-                            objectFit="cover"
-                            boxSize="100%"
-                        />
-                        <Stack mt="6" spacing="3">
-                            <Heading size="md">{name}</Heading>
-                            <Text fontSize="sm">Last Location</Text>
-                            <Text fontSize="lg" fontWeight="semibold">
-                                {location.name}
-                            </Text>
-                        </Stack>
-                    </CardBody>
-                    <Divider />
-                    <CardFooter>
-                        <Badge
-                            colorScheme={
-                                status === "Dead"
-                                    ? "red"
-                                    : status === "Alive"
-                                        ? "green"
-                                        : "gray"
-                            }
-                        >
-                            {status}
-                        </Badge>
-                    </CardFooter>
-                </Card>
+                <Link
+
+                    style={{ textDecoration: "none" }}
+                    to={`${page}${id}`}
+                    key={id}
+                    className="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 position-relative text-dark"
+                >
+                    <div
+                        className={`${styles.card} d-flex flex-column justify-content-center`}
+                    >
+                        <img className={`${styles.img} img-fluid`} src={image} alt="" />
+                        <div className={`${styles.content}`}>
+                            <div className="fs-5 fw-bold mb-4">{name}</div>
+                            <div className="">
+                                <div className="fs-6 fw-normal">Last Location</div>
+                                <div className="fs-5">{location.name}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {(() => {
+                        if (status === "Dead") {
+                            return (
+                                <div
+                                    className={`${styles.badge} position-absolute badge bg-danger`}
+                                >
+                                    {status}
+                                </div>
+                            );
+                        } else if (status === "Alive") {
+                            return (
+                                <div
+                                    className={`${styles.badge} position-absolute badge bg-success`}
+                                >
+                                    {status}
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div
+                                    className={`${styles.badge} position-absolute badge bg-secondary`}
+                                >
+                                    {status}
+                                </div>
+                            );
+                        }
+                    })()}
+                </Link>
             );
         });
     } else {
-        display = <Text>No Characters Found :/</Text>;
+        display = "No Characters Found :/";
     }
 
     return <>{display}</>;
 };
 
-export default CharacterCard;
+export default Card;
